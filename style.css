@@ -1,10 +1,10 @@
 @font-face { 
     font-family: Pokemon; 
-    src: url('Pokemon.ttf') format('truetype'); 
+    src: url('PokemonFont.ttf') format('truetype'); 
 }
 
 * {
-    font-family: Pokemon;
+    font-family: Pokemon, monospace;
     margin: 0;
     padding: 0;
     margin-block: 0;
@@ -23,9 +23,10 @@ header {
     background-color: #555555;
 }
 
-h3 {
+header p {
     color: white;
     text-align: center;
+    font-size: 2em;
 }
 
 main {
@@ -50,4 +51,18 @@ ol {
 
 .name {
     padding-left: 4em;
+}
+
+footer {
+    padding: 1em;
+    background-color: #555555;
+}
+
+footer p {
+    color: white;
+    text-align: center;
+}
+
+footer p + p {
+    margin-top: 1em;
 }
