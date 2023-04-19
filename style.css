@@ -37,20 +37,29 @@ main {
     background-color: white;
 }
 
+.contents {
+    padding-left: 1em;
+}
+
 ol {
     list-style-type: none;
 }
 
-.contents {
-    padding-left: 1em;
+li:focus {
+    outline: none;
 }
 
 .id {
     padding-left: 1em;
 }
 
-.name {
-    padding-left: 4em;
+.arrow {
+    color: transparent;
+    padding-right: 3em;
+}
+
+li:hover .arrow, li:focus .arrow {
+    color: black;
 }
 
 footer {
