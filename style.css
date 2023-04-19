@@ -1,0 +1,53 @@
+@font-face { 
+    font-family: Pokemon; 
+    src: url('Pokemon.ttf') format('truetype'); 
+}
+
+* {
+    font-family: Pokemon;
+    margin: 0;
+    padding: 0;
+    margin-block: 0;
+    margin-inline: 0;
+    padding-block: 0;
+    padding-inline: 0;
+}
+
+body {
+    background-color: black;
+}
+
+header {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-color: #555555;
+}
+
+h3 {
+    color: white;
+    text-align: center;
+}
+
+main {
+    width: 20em;
+    margin: 0 auto;
+    padding-top: 1em;
+    padding-bottom: 2em;
+    background-color: white;
+}
+
+ol {
+    list-style-type: none;
+}
+
+.contents {
+    padding-left: 1em;
+}
+
+.id {
+    padding-left: 1em;
+}
+
+.name {
+    padding-left: 4em;
+}

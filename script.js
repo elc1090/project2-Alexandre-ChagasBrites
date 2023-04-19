@@ -5,18 +5,21 @@ requestGeneration(1)
             return getId(a) - getId(b);
         });
 
-        let ul = document.getElementById('pokemonSpecies');
+        let ol = document.getElementById('pokemonSpecies');
         for (let i in pokemons) {
             let pokemon = data.pokemon_species[i];
+
+            let id = String(getId(pokemon)).padStart(3, '0');
+            let name = pokemon.name.slice(0, 1).toUpperCase() + pokemon.name.slice(1);
 
             let li = document.createElement('li');
             li.classList.add('list-group-item');
             li.innerHTML = (`
-                <p><strong>Name:</strong> ${pokemon.name}</p>
-                <p><strong>URL:</strong> <a href="${pokemon.url}">${pokemon.url}</a></p>
+                <p class="id">${id}</p>
+                <p class="name">${name}</p>
             `);
 
-            ul.appendChild(li);
+            ol.appendChild(li);
         }
     });
 
@@ -26,5 +29,6 @@ function requestGeneration(i) {
 
 function getId(a) {
     let url = a.url.substring(0, a.url.length - 1);
-    return url.substring(url.lastIndexOf('/') + 1);
+    url = url.substring(url.lastIndexOf('/') + 1);
+    return parseInt(url);
 }
