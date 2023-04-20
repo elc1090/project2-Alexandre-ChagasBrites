@@ -1,59 +1,55 @@
-fillPokedex();
+const pokedex = document.getElementById('pokedex');
+const ol = document.getElementById('pokemonSpecies');
+
+const entry = document.getElementById('entry');
+const entryIcon = document.getElementById('entryIcon');
+const entryName = document.getElementById('entryName');
+const entryCategory = document.getElementById('entryCategory');
+const entryHeight = document.getElementById('entryHeight');
+const entryWeight = document.getElementById('entryWeight');
+const entryText = document.getElementById('entryText');
 
 window.addEventListener("popstate", (event) => {
     loadEntry(event.state);
 });
 
-async function fillPokedex() {
-    let response = await requestGeneration(1);
-    let data = await response.json();
+loadPokedex('kanto');
+loadEntry(history.state);
 
-    let pokemons = data.pokemon_species.sort(function(a, b){
-        return getId(a) - getId(b);
+async function loadPokedex(i) {
+    let pokedex = await (await requestPokedex(i)).json();
+    for (let pokemon of pokedex.pokemon_entries) {
+        addEntry(pokemon);
+    }
+}
+
+function addEntry(pokemon) {
+    let id = String(pokemon.entry_number).padStart(3, '0');
+    let name = pokemon.pokemon_species.name.toUpperCase();
+
+    let li = document.createElement('li');
+    li.tabIndex = pokemon.entry_number;
+    li.innerHTML = (`
+        <p class="id">${id}</p>
+        <p><span class="arrow">▶</span>${name}</p>
+    `);
+
+    li.addEventListener('focus', (e) => {
+        let arrow = e.target.querySelector('.arrow');
+        arrow.textContent = '▷';
     });
 
-    let ol = document.getElementById('pokemonSpecies');
-    for (let pokemon of pokemons) {
-        let pokemonId = getId(pokemon);
-        let id = String(pokemonId).padStart(3, '0');
-        let name = pokemon.name.toUpperCase();
+    li.addEventListener('blur', (e) => {
+        let arrow = e.target.querySelector('.arrow');
+        arrow.textContent = '▶';
+    });
 
-        let li = document.createElement('li');
-        li.tabIndex = pokemonId;
-        li.innerHTML = (`
-            <p class="id">${id}</p>
-            <p><span class="arrow">▶</span>${name}</p>
-        `);
+    li.addEventListener('click', (e) => {
+        loadEntry(pokemon.entry_number);
+        history.pushState(pokemon.entry_number, '', `?entry=${pokemon.entry_number}`);
+    });
 
-        li.addEventListener('focus', (e) => {
-            let arrow = e.target.querySelector('.arrow');
-            arrow.textContent = '▷';
-        });
-
-        li.addEventListener('blur', (e) => {
-            let arrow = e.target.querySelector('.arrow');
-            arrow.textContent = '▶';
-        });
-
-        li.addEventListener('click', (e) => {
-            loadEntry(pokemonId);
-            history.pushState(pokemonId, '', `?entry=${pokemonId}`);
-        });
-
-        ol.appendChild(li);
-    }
-
-    loadEntry(history.state);
-}
-
-function requestGeneration(i) {
-    return fetch(`https://pokeapi.co/api/v2/generation/${i}/`);
-}
-
-function getId(a) {
-    let url = a.url.slice(0, a.url.length - 1);
-    url = url.slice(url.lastIndexOf('/') + 1);
-    return parseInt(url);
+    ol.appendChild(li);
 }
 
 async function loadEntry(i) {
@@ -61,14 +57,7 @@ async function loadEntry(i) {
         let pokemon = await (await requestPokemon(i)).json();
         let specie = await (await requestSpecie(i)).json();
 
-        let entryIcon = document.getElementById('entryIcon');
-        let entryName = document.getElementById('entryName');
-        let entryCategory = document.getElementById('entryCategory');
-        let entryHeight = document.getElementById('entryHeight');
-        let entryWeight = document.getElementById('entryWeight');
-        let entryText = document.getElementById('entryText');
-
-        entryIcon.src = pokemon.sprites.versions['generation-i']['yellow'].front_transparent;
+        entryIcon.src = getSprite(pokemon);
         entryName.textContent = specie.name.toUpperCase();
         entryCategory.textContent = getCategory(specie);
         entryHeight.textContent = String(pokemon.height / 10) + 'm';
@@ -76,11 +65,12 @@ async function loadEntry(i) {
         entryText.textContent = getText(specie);
     }
     
-    let pokedex = document.getElementById('pokedex');
-    let entry = document.getElementById('entry');
-    
     pokedex.style.display = i == null ? 'block' : 'none';
     entry.style.display = i == null ? 'none' : 'block';
+}
+
+function requestPokedex(i) {
+    return fetch(`https://pokeapi.co/api/v2/pokedex/${i}/`);
 }
 
 function requestSpecie(i) {
@@ -91,10 +81,20 @@ function requestPokemon(i) {
     return fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`);
 }
 
-function getCategory(a) {
-    for (let genera of a.genera) {
-        if (genera.language.name === 'en') {
-            let category = genera.genus;
+function getId(url) {
+    let id = url.slice(0, url.length - 1);
+    id = id.slice(id.lastIndexOf('/') + 1);
+    return parseInt(id);
+}
+
+function getSprite(pokemon) {
+    return pokemon.sprites.versions['generation-i']['yellow'].front_transparent;
+}
+
+function getCategory(specie) {
+    for (let genus of specie.genera) {
+        if (genus.language.name === 'en') {
+            let category = genus.genus;
             category = category.replace('Pokémon', '');
             category = category.replaceAll(' ', '');
             return category.toUpperCase();
@@ -103,9 +103,14 @@ function getCategory(a) {
     return '';
 }
 
-function getText(a) {
-    let text = a.flavor_text_entries[2].flavor_text;
-    text = text.slice(0, text.indexOf('\f'));
-    text = text.replaceAll('\n', '\n\n');
-    return text;
+function getText(specie) {
+    for (let flavor_text of specie.flavor_text_entries) {
+        if (flavor_text.language.name === 'en' && flavor_text.version.name === 'yellow') {
+            let text = flavor_text.flavor_text;
+            text = text.slice(0, text.indexOf('\f'));
+            text = text.replaceAll('\n', '\n\n');
+            return text;
+        }
+    }
+    return '';
 }
