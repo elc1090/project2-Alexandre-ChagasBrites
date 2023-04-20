@@ -30,6 +30,7 @@ function addEntry(pokemon) {
     let name = pokemon.pokemon_species.name.toUpperCase();
 
     let li = document.createElement('li');
+    li.classList.add('entry');
     li.tabIndex = pokemon.entry_number;
     li.innerHTML = (`
         <p class="id">${id}</p>
@@ -82,7 +83,7 @@ async function loadEntry(i) {
         });
     }
     
-    pokedex.style.display = i == null ? 'block' : 'none';
+    pokedex.style.display = i == null ? 'flex' : 'none';
     entry.style.display = i == null ? 'none' : 'block';
 }
 

@@ -6,22 +6,54 @@
         <link rel="stylesheet" href="style.css">
         <script src="script.js" defer="defer"></script>
     </head>
-    <body>
-        <header>
+    <body style="height: 100vh; display: flex; flex-direction: column; justify-content: space-between">
+        <header class="entry">
             <p>
                 Pokédex
             </p>
         </header>
         <main>
-            <div id="pokedex">
-                <p class="contents">
-                    CONTENTS
-                </p>
-                <ol id="pokemonSpecies">
-    
-                </ol>
+            <div class="entry" id="pokedex" style="display: flex">
+                <div style="width: 14.625em; border-right: 0.25em solid #181818; padding-bottom: 2em; padding-right: 0.375em">
+                    <p class="contents" style="position: sticky; top: 0; padding-top: 1em; z-index: 1; background-color: #f8f8f8">
+                        CONTENTS
+                    </p>
+                    <ol id="pokemonSpecies">
+        
+                    </ol>
+                </div>
+                <div style="position: sticky; top: 0; height: 18em; width: 100%; padding-left: 0.375em">
+                    <div style="border-bottom: 0.125em solid #181818; padding-top: 2em; padding-bottom: 1.25em; padding-left: 1em">
+                        <p>
+                            SEEN
+                        </p>
+                        <p>
+                            151
+                        </p>
+                        <p style="margin-top: 1em">
+                            OWN
+                        </p>
+                        <p>
+                            151
+                        </p>
+                    </div>
+                    <div style="margin-top: 0.125em; border-top: 0.25em solid #181818; padding-top: 1em; padding-bottom: 1em; padding-left: 1em">
+                        <p>
+                            DATA
+                            <br>
+                            <br>
+                            CRY
+                            <br>
+                            <br>
+                            AREA
+                            <br>
+                            <br>
+                            QUIT
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div id="entry">
+            <div class="entry" id="entry">
                 <div style="display: flex; border: 0.125em solid #181818; padding: 0.5em 0.5em 0.375em">
                     <div>
                         <div class="icon">

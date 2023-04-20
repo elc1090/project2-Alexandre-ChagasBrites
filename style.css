@@ -3,6 +3,10 @@
     src: url('PokemonFont.ttf') format('truetype'); 
 }
 
+html {
+    scroll-snap-type: y mandatory;
+}
+
 * {
     font-family: Pokemon, monospace;
     margin: 0;
@@ -36,17 +40,16 @@ main {
     color: #181818;
 }
 
-#pokedex {
-    padding-top: 1em;
-    padding-bottom: 2em;
-}
-
 .contents {
     padding-left: 1em;
 }
 
 ol {
     list-style-type: none;
+}
+
+.entry {
+    scroll-snap-align: start;
 }
 
 li:focus {
