@@ -68,8 +68,8 @@ li:hover .arrow, li:focus .arrow {
 
 #entry {
     display: none;
-    border: 0.375em solid #884828;
-    padding: 1.625em 0.625em 0.625em;
+    border: solid #884828;
+    border-width: 0.375em 0.375em 0.5em;
 }
 
 .icon {
@@ -85,6 +85,7 @@ img {
     left: -2.5em;
     width: 12em;
     height: 12em;
+    transform: scaleX(-1);
     image-rendering: pixelated;
 }
 

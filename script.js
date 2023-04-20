@@ -3,6 +3,7 @@ const ol = document.getElementById('pokemonSpecies');
 
 const entry = document.getElementById('entry');
 const entryIcon = document.getElementById('entryIcon');
+const entryId = document.getElementById('entryId');
 const entryName = document.getElementById('entryName');
 const entryCategory = document.getElementById('entryCategory');
 const entryHeight = document.getElementById('entryHeight');
@@ -58,6 +59,7 @@ async function loadEntry(i) {
         let specie = await (await requestSpecie(i)).json();
 
         entryIcon.src = getSprite(pokemon);
+        entryId.textContent = '№.' + String(i).padStart(3, '0');
         entryName.textContent = specie.name.toUpperCase();
         entryCategory.textContent = getCategory(specie);
         entryHeight.textContent = String(pokemon.height / 10) + 'm';
@@ -79,12 +81,6 @@ function requestSpecie(i) {
 
 function requestPokemon(i) {
     return fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`);
-}
-
-function getId(url) {
-    let id = url.slice(0, url.length - 1);
-    id = id.slice(id.lastIndexOf('/') + 1);
-    return parseInt(id);
 }
 
 function getSprite(pokemon) {
