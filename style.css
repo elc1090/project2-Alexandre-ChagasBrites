@@ -14,17 +14,17 @@
 }
 
 body {
-    background-color: black;
+    background-color: #555555;
 }
 
 header {
     padding-top: 1em;
     padding-bottom: 1em;
-    background-color: #555555;
+    background-color: #181818;
 }
 
 header p {
-    color: white;
+    color: #f8f8f8;
     text-align: center;
     font-size: 2em;
 }
@@ -32,9 +32,13 @@ header p {
 main {
     width: 20em;
     margin: 0 auto;
+    background-color: #f8f8f8;
+    color: #181818;
+}
+
+#pokedex {
     padding-top: 1em;
     padding-bottom: 2em;
-    background-color: white;
 }
 
 .contents {
@@ -59,16 +63,38 @@ li:focus {
 }
 
 li:hover .arrow, li:focus .arrow {
-    color: black;
+    color: #181818;
+}
+
+#entry {
+    display: none;
+    border: 0.375em solid #884828;
+    padding: 1.625em 0.625em 0.625em;
+}
+
+.icon {
+    position: relative;
+    display: inline-block;
+    width: 7em;
+    height: 7em;
+}
+
+img {
+    position: absolute;
+    top: -2.5em;
+    left: -2.5em;
+    width: 12em;
+    height: 12em;
+    image-rendering: pixelated;
 }
 
 footer {
     padding: 1em;
-    background-color: #555555;
+    background-color: #181818;
 }
 
 footer p {
-    color: white;
+    color: #f8f8f8;
     text-align: center;
 }
 
