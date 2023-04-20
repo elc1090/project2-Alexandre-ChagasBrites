@@ -9,6 +9,7 @@ const entryCategory = document.getElementById('entryCategory');
 const entryHeight = document.getElementById('entryHeight');
 const entryWeight = document.getElementById('entryWeight');
 const entryText = document.getElementById('entryText');
+const entryMarker = document.getElementById('entryMarker');
 
 window.addEventListener("popstate", (event) => {
     loadEntry(event.state);
@@ -62,9 +63,23 @@ async function loadEntry(i) {
         entryId.textContent = '№.' + String(i).padStart(3, '0');
         entryName.textContent = specie.name.toUpperCase();
         entryCategory.textContent = getCategory(specie);
-        entryHeight.textContent = String(pokemon.height / 10) + 'm';
-        entryWeight.textContent = String(pokemon.weight / 10) + 'kg';
-        entryText.textContent = getText(specie);
+        entryHeight.textContent = String((pokemon.height / 10).toFixed(1)) + 'm';
+        entryWeight.textContent = String((pokemon.weight / 10).toFixed(1)) + 'kg';
+
+        let currentPage = 0;
+        let textPages = getTextPages(specie);
+        nextPage();
+
+        function nextPage() {
+            entryText.textContent = textPages[currentPage++];
+            entryMarker.style.color = currentPage == textPages.length ? 'transparent' : '#181818';
+        }
+
+        entryText.addEventListener('click', (e) => {
+            if (currentPage < textPages.length) {
+                nextPage();
+            }
+        });
     }
     
     pokedex.style.display = i == null ? 'block' : 'none';
@@ -99,14 +114,13 @@ function getCategory(specie) {
     return '';
 }
 
-function getText(specie) {
+function getTextPages(specie) {
     for (let flavor_text of specie.flavor_text_entries) {
         if (flavor_text.language.name === 'en' && flavor_text.version.name === 'yellow') {
-            let text = flavor_text.flavor_text;
-            text = text.slice(0, text.indexOf('\f'));
-            text = text.replaceAll('\n', '\n\n');
-            return text;
+            let text = flavor_text.flavor_text.replaceAll('\n', '\n\n');
+            let pages = text.split('\f');
+            return pages;
         }
     }
-    return '';
+    return [];
 }
