@@ -11,6 +11,8 @@ const entryWeight = document.getElementById('entryWeight');
 const entryText = document.getElementById('entryText');
 const entryMarker = document.getElementById('entryMarker');
 
+const blank = document.getElementById('blank');
+
 window.addEventListener("popstate", (event) => {
     loadEntry(event.state);
 });
@@ -30,8 +32,7 @@ function addEntry(pokemon) {
     let name = pokemon.pokemon_species.name.toUpperCase();
 
     let li = document.createElement('li');
-    li.classList.add('entry');
-    //li.tabIndex = pokemon.entry_number;
+    li.classList.add('scroll-snap');
     li.innerHTML = (`
         <button type="button">
             <p class="id">${id}</p>
@@ -60,6 +61,10 @@ function addEntry(pokemon) {
 }
 
 async function loadEntry(i) {
+    pokedex.style.display = 'none';
+    entry.style.display = 'none';
+    blank.style.display = 'block';
+
     if (i != null) {
         let pokemon = await (await requestPokemon(i)).json();
         let specie = await (await requestSpecie(i)).json();
@@ -89,6 +94,7 @@ async function loadEntry(i) {
     
     pokedex.style.display = i == null ? 'flex' : 'none';
     entry.style.display = i == null ? 'none' : 'block';
+    blank.style.display = 'none';
 }
 
 function requestPokedex(i) {
@@ -123,7 +129,6 @@ function getTextPages(specie) {
     for (let flavor_text of specie.flavor_text_entries) {
         if (flavor_text.language.name === 'en' && flavor_text.version.name === 'yellow') {
             let text = flavor_text.flavor_text.replaceAll('\n', '\n\n');
-            //text = text.replaceAll('\f', '\n\n');
             let pages = text.split('\f');
             return pages;
         }

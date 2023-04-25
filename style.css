@@ -16,10 +16,19 @@ html {
     margin-inline: 0;
     padding-block: 0;
     padding-inline: 0;
+    image-rendering: pixelated;
 }
 
 body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     background-color: #78c878;
+}
+
+.scroll-snap {
+    scroll-snap-align: start;
 }
 
 header {
@@ -28,10 +37,11 @@ header {
     background-color: #181818;
 }
 
-header p {
+header h1 {
     color: #f8f8f8;
     text-align: center;
     font-size: 2em;
+    font-weight: normal;
 }
 
 main {
@@ -40,16 +50,66 @@ main {
     color: #181818;
 }
 
+.hori-bar {
+    width: 32em;
+    height: 5em;
+    background-size: 32em 5em;
+}
+
+.vert-bar {
+    width: 6em;
+    height: auto;
+    background-repeat: repeat-y; 
+    background-size: 6em auto;
+}
+
+.top-bar {
+    background-image: url('top.png');
+}
+
+.left-bar {
+    background-image: url('left.png');
+}
+
+.right-bar {
+    background-image: url('right.png');
+}
+
+.bottom-bar {
+    background-image: url('bottom.png');
+}
+
+#pokedex {
+    display: flex;
+    flex-direction: row;
+}
+
+.pokedex-left {
+    width: 14em;
+    border-right: 0.25em solid #181818;
+    padding-bottom: 2em;
+    padding-right: 0.375em;
+}
+
 .contents {
     padding-left: 1em;
+    position: sticky; 
+    top: 0;
+    padding-top: 1em;
+    z-index: 1;
+    background-color: #f8f8f8;
 }
 
 ol {
     list-style-type: none;
 }
 
-.entry {
-    scroll-snap-align: start;
+li:focus {
+    outline: none;
+}
+
+li:hover .arrow, li:focus .arrow {
+    color: #181818;
 }
 
 button {
@@ -62,10 +122,6 @@ button {
     font-size: 1em;
 }
 
-li:focus {
-    outline: none;
-}
-
 .id {
     padding-left: 1em;
 }
@@ -75,8 +131,27 @@ li:focus {
     padding-right: 3em;
 }
 
-li:hover .arrow, li:focus .arrow {
-    color: #181818;
+.pokedex-right {
+    position: sticky;
+    top: 0;
+    width: 5em;
+    height: 18em;
+    padding-left: 0.375em;
+}
+
+.pokedex-right-top {
+    border-bottom: 0.125em solid #181818;
+    padding-top: 2em;
+    padding-bottom: 1.25em;
+    padding-left: 1em;
+}
+
+.pokedex-right-bottom {
+    margin-top: 0.125em;
+    border-top: 0.25em solid #181818;
+    padding-top: 1em;
+    padding-bottom: 1em; 
+    padding-left: 1em;
 }
 
 #entry {
@@ -84,6 +159,12 @@ li:hover .arrow, li:focus .arrow {
     border: solid #884828;
     border-width: 0.375em 0.375em 0.5em;
     width: 19.25em;
+}
+
+.entry-top {
+    display: flex;
+    border: 0.125em solid #181818;
+    padding: 0.5em 0.5em 0.375em;
 }
 
 .icon {
@@ -103,6 +184,49 @@ li:hover .arrow, li:focus .arrow {
     image-rendering: pixelated;
 }
 
+#entryId {
+    text-align: center;
+}
+
+.entry-top-right {
+    width: 10em;
+    padding-left: 1em;
+}
+
+#entryName, #entryCategory {
+    padding-top: 1em;
+}
+
+.entry-data {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1em;
+}
+
+#entryHeight {
+    padding-right: 1em;
+}
+
+.entry-bottom {
+    border: 0.125em solid #181818;
+    padding: 0.375em 0.5em;
+}
+
+#entryText {
+    padding-top: 1em;
+    white-space: pre-line;
+}
+
+#entryMarker {
+    text-align: right;
+}
+
+#blank {
+    display: none;
+    width: 20em;
+    height: 18em;
+}
+
 footer {
     padding: 1em;
     background-color: #181818;
@@ -110,9 +234,10 @@ footer {
 
 footer p {
     color: #f8f8f8;
-    text-align: center;
+    text-align: right;
 }
 
-footer p + p {
-    margin-top: 1em;
+footer p:first-child {
+    text-align: center;
+    padding-bottom: 1em;
 }

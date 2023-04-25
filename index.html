@@ -6,45 +6,37 @@
         <link rel="stylesheet" href="style.css">
         <script src="script.js" defer="defer"></script>
     </head>
-    <body style="height: 100vh; display: flex; flex-direction: column; justify-content: space-between">
-        <header class="entry">
-            <p>
-                Pokédex com PokéAPI
-            </p>
+    <body>
+        <header class="scroll-snap">
+            <h1>Pokédex com PokéAPI</h1>
         </header>
         <main>
-            <div style="background-image: url('top.png'); background-size: 32em 5em; width: 32em; height: 5em; image-rendering: pixelated">
-
-            </div>
+            <div class="hori-bar top-bar"></div>
             <div style="display:flex">
-                <div style="background-image: url('left.png'); background-repeat: repeat-y; background-size: 6em auto; width: 6em; image-rendering: pixelated">
-
-                </div>
-                <div class="entry" id="pokedex" style="display: flex">
-                    <div style="width: 14em; border-right: 0.25em solid #181818; padding-bottom: 2em; padding-right: 0.375em">
-                        <p class="contents" style="position: sticky; top: 0; padding-top: 1em; z-index: 1; background-color: #f8f8f8">
+                <div class="vert-bar left-bar"></div>
+                <div class="scroll-snap" id="pokedex">
+                    <div class="pokedex-left">
+                        <p class="contents">
                             CONTENTS
                         </p>
                         <ol id="pokemonSpecies">
             
                         </ol>
                     </div>
-                    <div style="position: sticky; top: 0; width: 5em; height: 18em; width: 100%; padding-left: 0.375em">
-                        <div style="border-bottom: 0.125em solid #181818; padding-top: 2em; padding-bottom: 1.25em; padding-left: 1em">
+                    <div class="pokedex-right">
+                        <div class="pokedex-right-top">
                             <p>
                                 SEEN
-                            </p>
-                            <p>
+                                <br>
                                 151
-                            </p>
-                            <p style="margin-top: 1em">
+                                <br>
+                                <br>
                                 OWN
-                            </p>
-                            <p>
+                                <br>
                                 151
                             </p>
                         </div>
-                        <div style="margin-top: 0.125em; border-top: 0.25em solid #181818; padding-top: 1em; padding-bottom: 1em; padding-left: 1em">
+                        <div class="pokedex-right-bottom">
                             <p>
                                 DATA
                                 <br>
@@ -60,31 +52,32 @@
                         </div>
                     </div>
                 </div>
-                <div class="entry" id="entry">
-                    <div style="display: flex; border: 0.125em solid #181818; padding: 0.5em 0.5em 0.375em">
+                <div class="scroll-snap" id="entry">
+                    <div class="entry-top">
                         <div>
                             <div class="icon">
                                 <img id="entryIcon">
                             </div>
-                            <p id="entryId" style="text-align: center">
+                            <p id="entryId">
         
                             </p>
                         </div>
-                        <div style="width: 100%; padding-left: 1em">
-                            <p id="entryName" style="padding-top: 1em">
+                        <div class="entry-top-right">
+                            <p id="entryName">
             
                             </p>
-                            <p id="entryCategory" style="padding-top: 1em">
+                            <p id="entryCategory">
             
                             </p>
-                            <div style="display: flex; justify-content: space-between; padding-top: 1em">
+                            <div class="entry-data">
                                 <p>
                                     HT
                                 </p>
-                                <p id="entryHeight" style="padding-right: 1em">
+                                <p id="entryHeight">
+
                                 </p>
                             </div>
-                            <div style="display: flex; justify-content: space-between; padding-top: 1em">
+                            <div class="entry-data">
                                 <p>
                                     WT
                                 </p>
@@ -94,29 +87,26 @@
                             </div>
                         </div>
                     </div>
-                    <div style="border: 0.125em solid #181818; padding: 0.375em 0.5em">
-                        <p id="entryText" style="padding-top: 1em; white-space: pre-line">
+                    <div class="entry-bottom">
+                        <p id="entryText">
         
                         </p>
-                        <p id="entryMarker" style="text-align: right">
+                        <p id="entryMarker">
                             ▼
                         </p>
                     </div>
                 </div>
-                <div style="background-image: url('right.png'); background-repeat: repeat-y; background-size: 6em auto; width: 6em; image-rendering: pixelated">
-
-                </div>
+                <div class="scroll-snap" id="blank"></div>
+                <div class="vert-bar right-bar"></div>
             </div>
-            <div style="background-image: url('bottom.png'); background-size: 32em 5em; width: 32em; height: 5em; image-rendering: pixelated">
-
-            </div>
+            <div class="hori-bar bottom-bar"></div>
         </main>
         <footer>
-            <p style="text-align: center">
+            <p>
                 Desenvolvido por Alexandre Chagas Brites
             </p>
-            <p style="text-align: right"> 
-                Sprites retirados de <a href="https://www.spriters-resource.com/" class="underline">The Spriters Resource</a>
+            <p> 
+                Sprites retirados de <a href="https://www.spriters-resource.com/">The Spriters Resource</a>
             </p>
         </footer>
     </body>
