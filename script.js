@@ -31,23 +31,27 @@ function addEntry(pokemon) {
 
     let li = document.createElement('li');
     li.classList.add('entry');
-    li.tabIndex = pokemon.entry_number;
+    //li.tabIndex = pokemon.entry_number;
     li.innerHTML = (`
-        <p class="id">${id}</p>
-        <p><span class="arrow">▶</span>${name}</p>
+        <button type="button">
+            <p class="id">${id}</p>
+            <p><span class="arrow">▶</span>${name}</p>
+        </button>
     `);
 
-    li.addEventListener('focus', (e) => {
+    let bt = li.querySelector('button');
+
+    bt.addEventListener('focus', (e) => {
         let arrow = e.target.querySelector('.arrow');
         arrow.textContent = '▷';
     });
 
-    li.addEventListener('blur', (e) => {
+    bt.addEventListener('blur', (e) => {
         let arrow = e.target.querySelector('.arrow');
         arrow.textContent = '▶';
     });
 
-    li.addEventListener('click', (e) => {
+    bt.addEventListener('click', (e) => {
         loadEntry(pokemon.entry_number);
         history.pushState(pokemon.entry_number, '', `?entry=${pokemon.entry_number}`);
     });
@@ -119,6 +123,7 @@ function getTextPages(specie) {
     for (let flavor_text of specie.flavor_text_entries) {
         if (flavor_text.language.name === 'en' && flavor_text.version.name === 'yellow') {
             let text = flavor_text.flavor_text.replaceAll('\n', '\n\n');
+            //text = text.replaceAll('\f', '\n\n');
             let pages = text.split('\f');
             return pages;
         }

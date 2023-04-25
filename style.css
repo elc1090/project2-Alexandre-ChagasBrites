@@ -10,6 +10,7 @@ html {
 * {
     font-family: Pokemon, monospace;
     margin: 0;
+    border: 0;
     padding: 0;
     margin-block: 0;
     margin-inline: 0;
@@ -18,7 +19,7 @@ html {
 }
 
 body {
-    background-color: #555555;
+    background-color: #78c878;
 }
 
 header {
@@ -34,7 +35,6 @@ header p {
 }
 
 main {
-    width: 20em;
     margin: 0 auto;
     background-color: #f8f8f8;
     color: #181818;
@@ -50,6 +50,16 @@ ol {
 
 .entry {
     scroll-snap-align: start;
+}
+
+button {
+    appearance: none;
+    background-color: #f8f8f8;
+    color: #181818;
+    display: block;
+    box-sizing: content-box;
+    text-align: left;
+    font-size: 1em;
 }
 
 li:focus {
@@ -73,6 +83,7 @@ li:hover .arrow, li:focus .arrow {
     display: none;
     border: solid #884828;
     border-width: 0.375em 0.375em 0.5em;
+    width: 19.25em;
 }
 
 .icon {
@@ -82,7 +93,7 @@ li:hover .arrow, li:focus .arrow {
     height: 7em;
 }
 
-img {
+.icon img {
     position: absolute;
     top: -2.5em;
     left: -2.5em;
