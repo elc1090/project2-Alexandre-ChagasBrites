@@ -1,6 +1,6 @@
 @font-face { 
     font-family: Pokemon; 
-    src: url('PokemonFont.ttf') format('truetype'); 
+    src: url('../assets/PokemonFont.ttf') format('truetype'); 
 }
 
 html {
@@ -64,19 +64,23 @@ main {
 }
 
 .top-bar {
-    background-image: url('top.png');
+    background-image: url('../assets/top.png');
 }
 
 .left-bar {
-    background-image: url('left.png');
+    background-image: url('../assets/left.png');
 }
 
 .right-bar {
-    background-image: url('right.png');
+    background-image: url('../assets/right.png');
 }
 
 .bottom-bar {
-    background-image: url('bottom.png');
+    background-image: url('../assets/bottom.png');
+}
+
+.stretch-bar {
+    display: flex;
 }
 
 #pokedex {
