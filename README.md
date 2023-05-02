@@ -1,4 +1,4 @@
-# Portfólio de Guilherme Moisés Rodrigues Garcia
+# Pokédex com PokéAPI
 
 ![Screenshot do projeto](assets/screenshot.png "Screenshot do projeto").
 
