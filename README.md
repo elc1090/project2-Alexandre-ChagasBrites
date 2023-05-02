@@ -1,1 +1,26 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=10908330&assignment_repo_type=AssignmentRepo)
+# Portfólio de Guilherme Moisés Rodrigues Garcia
+
+![Screenshot do projeto](assets/screenshot.png "Screenshot do projeto").
+
+Acesso: https://elc1090.github.io/project2-Alexandre-ChagasBrites/
+
+#### Desenvolvedor(a)
+
+Alexandre Chagas Brites
+
+#### Tecnologias
+
+- HTML
+- CSS
+- PokéAPI
+
+#### Ambiente de desenvolvimento
+
+- VS Code
+
+#### Créditos
+
+- https://www.spriters-resource.com/ (Sprites)
+
+---
+Projeto entregue para a disciplina de [Desenvolvimento de Software para a Web](http://github.com/andreainfufsm/elc1090-2023a) em 2023a
